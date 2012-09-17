@@ -47,9 +47,9 @@ func eventLoop(window ui.Window) bool {
 	return true
 }
 
-func iterate(x, y float64, iters int) int {
+func iterate(x, y float64, maxiters int) int {
 	var zx, zy float64 = 0, 0
-	for iter := 1; iter <= iters; iter += 1 {
+	for iter := 1; iter <= maxiters; iter += 1 {
 		zx, zy = zx*zx-zy*zy+x, 2*zx*zy+y
 		if (zx*zx + zy*zy) > 1000 {
 			return iter
@@ -103,7 +103,7 @@ func main() {
 
 	window := openDisplay()
 
-	for ;; {
+	for {
 		bounds := window.Screen().Bounds()
 		buffer := image.NewRGBA(image.Rect(0, 0, bounds.Dx(), bounds.Dy()))
 
